@@ -62,7 +62,7 @@ app.listen(port, async () => {
     console.log(`server for content started on port ${port}`);
     
     //logic for storing the events whenever the service restarts after some downtime 
-    const result = await axios.get('http://gateway:8000/events');
+    const result = await axios.get('http://localhost:8000/events');
     console.log(result.data);
 
     result.data.forEach(async (data) => {
