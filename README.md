@@ -5,8 +5,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 A  Backend web application with three microservices namely user service and content service and one gateway service where 
+#
   -> User Service supports :- Register,Login,User Bonus,GetUserId
+#
   -> Content Service :- Content ingestion, story bonus, Content fetching
+#
   -> Gateway Service :- It is getting used used for interservice communication it is connected to mongodb database like the other service and   whenever data is communicated from one service to another it stores the data as event and if any service is down for sometime due to any reason it can recover the data from here and using seperate service for inter-service communication also help if we want to add any service later that can be done with very less efforts.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -25,12 +28,16 @@ A  Backend web application with three microservices namely user service and cont
 ### Prerequisites
 
 * nodejs - v14.17.3
+#
   Linux :- ```sudo apt install nodejs```
+#
   Windows :- ```https://www.mongodb.com/try/download/community```
 * npm - v6.14.13
   ```npm install npm@latest -g```
-*docker - Docker version 20.10.7, build 20.10.7-0ubuntu5~20.04.2
+*docker - Docker version 20.10.11
+#
   Linux :- ```sudo snap install docker```
+#
   Windows :- ```https://docs.docker.com/desktop/windows/install/```
 
 
