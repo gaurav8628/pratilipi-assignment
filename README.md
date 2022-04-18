@@ -5,12 +5,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 A  Backend web application with three microservices namely user service and content service and one gateway service where 
-#
-  -> User Service :- Register,Login,User Bonus,GetUserId
-#
-  -> Content Service :- Content ingestion, story bonus, Content fetching
-#
-  -> Gateway Service :- It is getting used used for interservice communication it is connected to mongodb database like the other service and   whenever data is communicated from one service to another it stores the data as event and if any service is down for sometime due to any reason it can recover the data from here and using seperate service for inter-service communication also help if we want to add any service later that can be done with very less efforts.
+
+  1. User Service :- Register,Login,User Bonus,GetUserId
+  2. Content Service :- Content ingestion, story bonus, Content fetching
+  3. Gateway Service :- It is getting used used for interservice communication it is connected to mongodb database like the other service and   whenever data is communicated from one service to another it stores the data as event and if any service is down for sometime due to any reason it can recover the data from here and using seperate service for inter-service communication also help if we want to add any service later that can be done with very less efforts.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
