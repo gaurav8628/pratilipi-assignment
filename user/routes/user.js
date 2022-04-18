@@ -7,9 +7,11 @@ const axios = require('axios');
 
 
 // api for getting all the users
-router.get('/users',(req,res) => {
-    const result = userSchema.find();
-    res.send({status:'ok',users:result});
+router.get('/users',async (req,res) => {
+    await userSchema.find((error,response) => {
+        res.json({status:'ok',users:response});
+    });
+    
 })
 
 
@@ -104,6 +106,7 @@ router.post('/login' , async (req,res) => {
 router.post('/getUserId', async (req,res) => {
 
     const user = await userSchema.findOne({email: req.body.email});
+    console.log(user);
     if(!user) return res.send('invalid email or password');
 
 

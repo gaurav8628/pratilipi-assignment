@@ -71,6 +71,9 @@
 							"const SignUpRequest = {\r",
 							"    url: 'http://localhost:8001/api/register',\r",
 							"    method: 'POST',\r",
+							"     header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
 							"    body: {\r",
 							"        mode: 'raw',\r",
 							"        raw: JSON.stringify({ email: \"abc@gmail.com\", password: \"Abc1@12345\", first_name:\"abc\", last_name:\"xyz\", phone:\"1111111111\" })\r",
@@ -222,15 +225,52 @@
 		},
 		{
 			"name": "Get UserId from EmailId",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const SignUpRequest = {\r",
+							"    url: 'http://localhost:8001/api/register',\r",
+							"    method: 'POST',\r",
+							"     header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ email: \"abc@gmail.com\", password: \"Abc1@12345\", first_name:\"abc\", last_name:\"xyz\", phone:\"1111111111\" })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"const loginRequest = {\r",
+							"    url: 'http://localhost:8001/api/login',\r",
+							"    method: 'POST',\r",
+							"     header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ email: \"abc@gmail.com\", password: \"Abc1@12345\" })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(SignUpRequest);\r",
+							"pm.sendRequest(loginRequest, (error, response) => {\r",
+							"    if (!error) {\r",
+							"        response = response.json();\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"Enter User EmailId\"\r\n}",
+					"raw": "{\r\n    \"email\": \"abc@gmail.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -308,11 +348,8 @@
 		},
 		{
 			"name": "Upload content using csv file",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "formdata",
