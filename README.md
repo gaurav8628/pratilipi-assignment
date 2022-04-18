@@ -34,10 +34,11 @@ A  Backend web application with three microservices namely user service and cont
   Windows :- ```https://www.mongodb.com/try/download/community```
 * npm - v6.14.13
   ```npm install npm@latest -g```
+* 
 *docker - Docker version 20.10.11
-#
+* 
   Linux :- ```sudo snap install docker```
-#
+* 
   Windows :- ```https://docs.docker.com/desktop/windows/install/```
 
 
