@@ -6,7 +6,7 @@
 ## About The Project
 A  Backend web application with three microservices namely user service and content service and one gateway service where 
 #
-  -> User Service supports :- Register,Login,User Bonus,GetUserId
+  -> User Service :- Register,Login,User Bonus,GetUserId
 #
   -> Content Service :- Content ingestion, story bonus, Content fetching
 #
@@ -28,10 +28,10 @@ A  Backend web application with three microservices namely user service and cont
 ### Prerequisites
 
 * nodejs - v14.17.3
-#
-  Linux :- ```sudo apt install nodejs```
-#
-  Windows :- ```https://www.mongodb.com/try/download/community```
+
+ 1. Linux :- ```sudo apt install nodejs```
+
+ 2. Windows :- ```https://www.mongodb.com/try/download/community```
 #
 * npm - v6.14.13
   ```npm install npm@latest -g```
