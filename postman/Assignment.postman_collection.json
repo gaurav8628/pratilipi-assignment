@@ -1,0 +1,343 @@
+{
+	"info": {
+		"_postman_id": "da80e744-cc2c-429b-8612-bb9fb1df153a",
+		"name": "Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"gaurav@pratilipi.in\",\r\n    \"password\":\"1234567\",\r\n    \"first_name\":\"Gaurav\",\r\n    \"last_name\":\"Verma\",\r\n    \"phone\":\"1111111111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8001/api/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Series",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"seriesName\":\"harrry potter\",\r\n    \"chapters\":[\r\n        {\"title\": \"chapter1\", \"story\": \"Story1\"},\r\n        {\"title\": \"Chapter2\", \"story\": \"Story2\"},\r\n        {\"title\": \"Chapter3\", \"story\": \"Story3\"},\r\n        {\"title\": \"Chapter4\", \"story\": \"Story4\"},\r\n        {\"title\": \"Chapter5\", \"story\": \"Story5\"},\r\n        {\"title\": \"Chapter6\", \"story\": \"Story6\"}\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8002/api/upload",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"api",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Bonus",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const SignUpRequest = {\r",
+							"    url: 'http://localhost:8001/api/register',\r",
+							"    method: 'POST',\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ email: \"abc@gmail.com\", password: \"Abc1@12345\", first_name:\"abc\", last_name:\"xyz\", phone:\"1111111111\" })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"const loginRequest = {\r",
+							"    url: 'http://localhost:8001/api/login',\r",
+							"    method: 'POST',\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ email: \"abc@gmail.com\", password: \"Abc1@12345\" })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(SignUpRequest);\r",
+							"pm.sendRequest(loginRequest, (error, response) => {\r",
+							"    if (!error) {\r",
+							"        response = response.json();\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email_id\":\"abc@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8001/api/bonus/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"bonus",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Story Bonus",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const SeriesCreationRequest = {\r",
+							"    url: 'http://localhost:8002/api/upload',\r",
+							"    method: 'POST',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ seriesName: \"Twilight\", chapters: [\r",
+							"            {title: \"chapter1\", story: \"Story1\"},\r",
+							"            {title: \"Chapter2\", story: \"Story2\"},\r",
+							"            {title: \"Chapter3\", story: \"Story3\"},\r",
+							"            {title: \"Chapter4\", story: \"Story4\"},\r",
+							"            {title: \"Chapter5\", story: \"Story5\"},\r",
+							"            {title: \"Chapter6\", story: \"Story6\"}\r",
+							"        ] })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"\r",
+							"pm.sendRequest(SeriesCreationRequest, (error,response) => {\r",
+							"    if (!error) {\r",
+							"        response = response.json();\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"seriesName\":\"Twilight\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8002/api/bonus/story",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"api",
+						"bonus",
+						"story"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8001/api/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get UserId from EmailId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"Enter User EmailId\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8001/api/getUserId",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"getUserId"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all the Series uploaded",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8002/api/content",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"api",
+						"content"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Content for user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"Enter userId\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8002/api/user/content",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"api",
+						"user",
+						"content"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload content using csv file",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "stories",
+							"type": "file",
+							"src": "/C:/Users/gaura/Desktop/Pratilipi_assignment.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8002/api/file/upload",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"api",
+						"file",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
