@@ -1,6 +1,6 @@
 # pratilipi-assignment
 
-# Fullstack Microservices App
+# Microservices Backend App
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
